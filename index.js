@@ -13,12 +13,21 @@ module.exports = class Status extends Plugin {
   }
 
   async status () {
-    const data = await get('https://srhpyqt94yxb.statuspage.io/api/v2/summary.json');
-    const response = data.body;
-    const { status } = response;
+    const { body } = await get('https://srhpyqt94yxb.statuspage.io/api/v2/summary.json');
+    const capitalize = (text) => text[0].toUpperCase() + text.slice(1);
+
     return {
       send: false,
-      result: status
+      result: {
+        type: 'rich',
+        title: body.status.description,
+        description: '[Discord Status](https://status.discordapp.com)',
+        fields: body.components.map(component => ({
+          name: component.name,
+          value: capitalize(component.status),
+          inline: true
+        }))
+      }
     };
   }
 };
