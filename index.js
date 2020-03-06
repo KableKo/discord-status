@@ -26,7 +26,8 @@ module.exports = class Status extends Plugin {
           name: component.name,
           value: capitalize(component.status),
           inline: true
-        }))
+        })),
+        timestamp: body.page.updated_at
       }
     };
   }
