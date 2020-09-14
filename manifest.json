@@ -1,7 +1,7 @@
 {
     "name": "Discord Status",
-    "version": "1.1.0",
-    "description": "discord status report, pulled from https://status.discord.com",
+    "version": "1.2.0",
+    "description": "discord status report, pulled from https://discordstatus.com/",
     "author": "KableKompany#0001",
     "license": "MIT"
 }

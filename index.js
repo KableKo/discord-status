@@ -6,7 +6,7 @@ module.exports = class Status extends Plugin {
     this.registerCommand(
       'status',
       [],
-      'Returns discord status from status.discord.com',
+      'Returns discord status from https://discordstatus.com',
       '{c}',
       this.status.bind()
     );
@@ -21,7 +21,7 @@ module.exports = class Status extends Plugin {
       result: {
         type: 'rich',
         title: body.status.description,
-        description: '[Discord Status](https://status.discord.com)',
+        description: '[Discord Status](https://discordstatus.com/)',
         fields: body.components.map(component => ({
           name: component.name,
           value: capitalize(component.status),
