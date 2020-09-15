@@ -3,13 +3,13 @@ const { get } = require('powercord/http');
 
 module.exports = class Status extends Plugin {
   startPlugin () {
-    this.registerCommand(
-      'status',
-      [],
-      'Returns discord status from https://discordstatus.com',
-      '{c}',
-      this.status.bind()
-    );
+    powercord.api.commands.registerCommand({
+      command: 'status',
+      aliases: [],
+      description: 'Returns discord status from https://discordstatus.com',
+      usage: '{c}',
+      executor: this.status.bind()
+    });
   }
 
   async status () {
@@ -21,11 +21,11 @@ module.exports = class Status extends Plugin {
       result: {
         type: 'rich',
         title: body.status.description,
-        description: '[Discord Status](https://discordstatus.com/)',
+        description: '[Discord Status](https://discordstatus.com/)\n' + '**Current Incident:**\n' + body.status.indicator,
         fields: body.components.map(component => ({
           name: component.name,
           value: capitalize(component.status),
-          inline: true
+          inline: true,
         })),
         timestamp: body.page.updated_at
       }
